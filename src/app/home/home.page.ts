@@ -59,8 +59,25 @@ export class HomePage implements OnInit, OnDestroy {
     this.router.navigate(["/", "new-pass"]);
   }
 
+  changeView() {
+
+  }
+
   get allPasses() {
     return this._allPasses;
+  }
+
+  getLabelColor(pass: OpswPass) {
+    return {
+      color: pass.origData.labelColor
+    };  
+
+  }
+
+  cardStyle(pass: OpswPass) {
+    return {
+      "--backgroud": pass.origData.backgroudColor
+    };
   }
 
 
