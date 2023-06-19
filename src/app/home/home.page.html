@@ -1,0 +1,21 @@
+<ion-content [fullscreen]="true">
+  <ion-toolbar>
+    <ion-title size="large">Wallet</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onAddNewPass()">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-card style="--background: #000000;" *ngFor="let pass of allPasses;">
+    <ion-card-header>
+      <ion-card-title>
+        {{pass.origData.generic.primaryFields[0].label}} <br>
+        {{pass.origData.generic.primaryFields[0].value}}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>

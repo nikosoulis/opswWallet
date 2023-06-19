@@ -1,0 +1,39 @@
+<ion-content [fullscreen]="true">
+    <ion-toolbar>
+        <ion-title size="large">Passbook Information</ion-title>
+        <ion-buttons slot="start">
+          <ion-button (click)="navigateHome()">
+            <ion-icon name="chevron-back-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    <section>
+        <fieldset style="margin: 10px !important;" class="form-group alert-light">  
+            <form [formGroup]="newPassForm" (ngSubmit)="onFormSubmit()">
+                <div class="form-group">
+                    <label for="pass-title">Pass Title</label>
+                    <input #passTitle formControlName="pass_title" type="text" class="form-control" id="pass-title"
+                        aria-describedby="pass-title-help" placeholder="Enter passport title">
+                    <small id="pass-title-help" class="form-text text-muted">Add the title for your pass</small>
+                </div>
+                <div class="form-group">
+                    <label for="pass-title">Select .pkpass</label>
+                    <input #passFile hidden type="file" (change)="onFileSelected($event)"
+                        class="form-control" id="pass-file" aria-describedby="pass-file-help"
+                        placeholder="Select pkpass file">
+                    <!-- <small id="pass-title-help" class="form-text text-muted">Add the title for your pass</small> -->
+                </div>
+                <div style="margin-top: 10px;" class="form-group">
+                    <button type="submit" class="btn btn-primary">
+                        Save
+                    </button>
+                </div>
+            </form>
+        </fieldset>
+    </section>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="onAddFile()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>
