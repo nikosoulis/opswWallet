@@ -22,16 +22,16 @@ import { IonicStorageModule } from '@ionic/storage-angular';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(), 
+    IonicModule.forRoot(),
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
   ],
   providers: [
-    { 
-      provide: RouteReuseStrategy, 
-      useClass: IonicRouteStrategy 
+    {
+      provide: RouteReuseStrategy,
+      useClass: IonicRouteStrategy
     },
     Zip,
     File,

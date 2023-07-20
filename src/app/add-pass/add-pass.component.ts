@@ -68,20 +68,20 @@ export class AddPassComponent implements OnInit {
     }
 
     async onFormSubmit() {
-        
+
         if(this._newPassForm.valid) {
             try {
                 await this.onSavePass();
             } catch(error) {
                 console.log("An Error Occured :", error);
             }
-            
+
         }
 
     }
 
     onSavePass() {
-        return new Promise(async (resolve, reject) => {
+        return new Promise(async (_, reject) => {
             try {
                 const dirName = this._newPassForm.controls.pass_title.value != null ? this._newPassForm.controls.pass_title.value: "";
                 const directoryResult = await this.file.createDir(this.file.dataDirectory, this.getDirectoryName(dirName), true);
@@ -94,7 +94,7 @@ export class AddPassComponent implements OnInit {
                 const unzipResult = await this.zip.unzip(fileResult.nativeURL, directoryResult.nativeURL,
                     () => {
                         console.log("On Unzip process event....");
-                    }    
+                    }
                 );
                 console.log("This is unzip result ", unzipResult);
                 const dirEntries = await this.file.listDir(this.file.dataDirectory, directoryResult.name);
@@ -117,7 +117,7 @@ export class AddPassComponent implements OnInit {
             } catch(error) {
                 reject(error);
             }
-            
+
         });
     }
 

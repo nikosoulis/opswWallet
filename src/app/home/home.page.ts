@@ -7,6 +7,7 @@ import {Chooser} from "@awesome-cordova-plugins/chooser/ngx";
 import { Subscription } from 'rxjs';
 import { PassStorage } from '../service/pass-storage.service';
 import { OpswPass } from '../model/pass.interface';
+import { ActionSheetButton, ActionSheetController } from '@ionic/angular';
 
 
 @Component({
@@ -24,7 +25,8 @@ export class HomePage implements OnInit, OnDestroy {
   private _$canReloadSub: Subscription | undefined;
   constructor(
     private router: Router,
-    private passStorage: PassStorage
+    private passStorage: PassStorage,
+    private actionSheet: ActionSheetController
   ) {}
   ngOnDestroy(): void {
     if(this._$canReloadSub) {
@@ -45,7 +47,7 @@ export class HomePage implements OnInit, OnDestroy {
             } catch(error) {
               console.log("An Error Occured on reload passes from storage. ", error);
             }
-            
+
           }
         },
         error: (error: any) => {
@@ -63,5 +65,29 @@ export class HomePage implements OnInit, OnDestroy {
     return this._allPasses;
   }
 
+  async openActions(ev: any) {
+    const actionEl = await this.actionSheet.create({
+      buttons: [
+        {
+          text: "Cancel",
+          role: "cancel"
+        },
+        {
+          text: "Delete",
+          handler: () => {
+            console.log("Delete pass..");
+          }
+        },
+        {
+          text: "Details",
+          handler: () => {
+            console.log("Details for pass..");
+          }
+        }
+
+      ]
+    });
+    actionEl.present();
+  }
 
 }
