@@ -102,11 +102,14 @@ export class AddPassComponent implements OnInit {
                 const readFileResult = await this.file.readAsText(directoryResult.nativeURL, "pass.json")
                 const jsonOb = JSON.parse(readFileResult);
                 console.log("This is content of pass.json ", jsonOb);
+                const thumbBase64 = await this.file.readAsDataURL(directoryResult.nativeURL, "thumbnail.png");
+                const logoBase64 = await this.file.readAsDataURL(directoryResult.nativeURL, "logo.png");
                 const resultData: OpswPass = {
+                    id: "",
                     origData: jsonOb,
                     extraData: {
-                        logoPath: directoryResult.nativeURL + "logo.png",
-                        thumbPath:  directoryResult.nativeURL + "thumbnail.png"
+                        logoPath: logoBase64,
+                        thumbPath:  thumbBase64
                     },
                     dataPath: directoryResult.nativeURL
                 };
@@ -120,6 +123,8 @@ export class AddPassComponent implements OnInit {
 
         });
     }
+
+    
 
     ionViewDidEnter() {
         console.log(this.passTitle);

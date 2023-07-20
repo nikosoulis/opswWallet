@@ -7,15 +7,37 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  <ion-card (click)="openActions($event)" style="--background: #000000;" *ngFor="let pass of allPasses;">
+  <ion-card (click)="openActions($event)" [ngStyle]="cardStyle(pass)" *ngFor="let pass of allPasses;">
     <ion-card-header>
+      <ion-buttons slot="end">
+        <ion-button (click)="changeView()">
+          <ion-icon name="return-down-forward-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
 
     </ion-card-header>
     <ion-card-content>
       <ion-card-title>
-        {{pass.origData.generic.primaryFields[0].label}} <br>
-        {{pass.origData.generic.primaryFields[0].value}}
+        <ion-img style="width: 200px;" [src]="pass.extraData.logoPath"></ion-img>
       </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div style="width: 100%; display: flex; justify-content: space-between;">
+        <div [ngStyle]="getLabelColor(pass)">
+          {{pass.origData.generic.primaryFields[0].label}} <br>
+          <h1 style="color: #000000;">{{pass.origData.generic.primaryFields[0].value}}</h1>
+        </div>
+        <div>
+          <ion-img style=" width: 100px;" [src]="pass.extraData.thumbPath"></ion-img>
+        </div>
+      </div>
+      <qrcode
+        style="text-align: center;"
+        [qrdata]="'124dadasfsd34234234243rsgsgsdfg424324gdgss'"
+        [width]="128"
+        [errorCorrectionLevel]="'M'"
+      >
+      </qrcode>
     </ion-card-content>
   </ion-card>
 </ion-content>

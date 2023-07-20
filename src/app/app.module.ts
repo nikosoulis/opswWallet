@@ -13,6 +13,7 @@ import { AddPassComponent } from './add-pass/add-pass.component';
 import { HomePage } from './home/home.page';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicStorageModule } from '@ionic/storage-angular';
+import { QRCodeModule } from "angularx-qrcode";
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { IonicStorageModule } from '@ionic/storage-angular';
     FormsModule,
     ReactiveFormsModule,
     IonicStorageModule.forRoot(),
+    QRCodeModule,
   ],
   providers: [
     {
